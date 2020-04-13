@@ -1,68 +1,106 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [james-bond](https://en.wikipedia.org/wiki/James_Bond)
 
-## Available Scripts
+新情报平台（2018.02.01 - 至今）
 
-In the project directory, you can run:
+## 目录结构
 
-### `yarn start`
+* build _(production 版本)_
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* public _(webpack不会触碰的公有文件)_
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* src
+    - Aisling _(素材库)_
+    - Aragorn _(组件库)_
+    - Eden _(工具库)_
+    - Nevermore _(静态数据库)_
+    - Routes _(前端路由库，使用code splitting)_
+        - Common _(各路由间的共享部分)_
+        - ***** _(路由)_
+            - `_skeleton.js` _(骨架，注入到根路由中的第一层路由，可以注入base bundle，也可以注入布局。当注入布局时，可以在布局的子组件中进一步注入其他路由，从而实现路由嵌套)_
+        - `index.js` _(入口)_
+    - Store _(状态库，使用redux)_
+        - Actions _(redux action 库)_
+        - Epics _(redux-observable epic 库)_
+            - `index.js` _(root)_
+        - Reducers _(redux reducer 库)_
+            - `index.js` _(root)_
+        - Selectors _(reselect及re-reselect 库)_
+        - Mediator _(调度者，用于模块间解耦)_
+        - `index.js` _(入口)_
+    - `index.js` _(入口)_
 
-### `yarn test`
+* .env _(环境变量配置文件)_
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## git commit 规范
 
-### `yarn build`
+commit前须附带此次行为对应的emoji
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+emoji | 对应行为
+---- | ----
+:tada: | 首次提交
+:art: | 结构优化、代码美化
+:zap: | 性能提升
+:fire: | 删除代码、文件
+:bug: | 修复bug
+:memo: | 文档修改
+:sparkles: | 新的功能点开发
+:lipstick: | UI开发
+:white_check_mark: | 添加测试
+:construction: | 进展中
+:arrow_up: | 依赖升级
+:arrow_down: | 依赖降级
+:pushpin: | 依赖升升降降
+:heavy_minus_sign: | 依赖移除
+:heavy_plus_sign: | 增加依赖
+:wrench: | 修改配置
+:pencil2: | 字写错了
+:hankey: | 本次提交代码和屎一样
+:rewind: | 回滚
+:alien: | 外部api的升级带来的代码更新
+:truck: | 文件挪位置
+:bento: | 资源新增和升级
+:ok_hand: | code review 强迫的更新
+:chart_with_upwards_trend: | 布点、监控等开发
+:recycle: | 代码重构
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## 请求规范
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  * 所有请求都应在Nevermore/Common/host.json中配置，配置规则如下
+```js
+{
+    "informationPlatform": {
+        "domain": "/",
+        "action": {
+            "getTasks": { // 接口别称，描述接口行为
+                "url": "infoplat/taskmanage/obtain_tasks", // 接口url
+                "type": "get", // 接口类型
+                "params": ["nflag", "from?", "size?", "page:1"] // 接口参数，非必要参数在参数尾加上?，默认参数用冒号分隔
+            }
+        }
+    }
+}
+```
+  * Eden/Utils/UrlManager中提供api对host.json进行相应操作
+  * 最主要的api是Ajax，他会完成参数验证，请求异常捕捉，登录校验失败捕捉并弹出登录框、cancel其他并发请求、在登录成功后retry所有请求等。
+  * 使用Ajax时，需要在它的下游做条件判断，将非请求结果的数据流直接抛出
 
-### `yarn eject`
+<!-- ## 快捷键
+  1. 快捷键统一在Nevermore/Common/keymap中配置别名，格式为
+  ```json
+  {
+      namespace: {
+          alias: keycode
+      }
+  }
+  ```
+  2. 须注意，快捷键的生命周期，是`react-keyboardist`所在组件的生命周期决定的
+  3. keycode是KeyboardEvent.code，如KeyK
+  4. 支持组合 -->
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## react开发建议
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  1. 避免使用字面量作为props，定义一个const来代替
+  1. 依赖状态拼接出来的字面量类型的props，使用reselect或re-reselect做缓存，或者直接使用PureComponent
+  1. reselect/PureComponent带来的性能提升，是reselect/shallowEquals和createElement的博弈，因此，只有在props较少，而DOM较多的情况下，使用PureComponent思想优化才有意义
+  1. 2、3条对于纯DOM组件没有意义
+  1. hotloader与懒加载、传送门都不兼容
