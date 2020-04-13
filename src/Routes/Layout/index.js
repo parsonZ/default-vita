@@ -1,8 +1,23 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { withRouter } from 'react-router-dom'
-
 import '../../Aragorn/Common/Sidebar' // 载入web-components
+import '../../Aragorn/Common/Banner'
+
+const STYLE = {
+    CONTAINER: {
+        width: '980px',
+        margin: '0 auto'
+    },
+    MENU: {
+        padding: 0
+    },
+    BANNER: {
+        background: '#FFF',
+        color: '#000'
+    },
+    WRAPPER: {}
+}
 
 const ref = React.createRef()
 class Layout extends React.Component {
@@ -18,10 +33,18 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <>
-                <pz-sidebar ref={ref}></pz-sidebar>
+            <div style={STYLE.CONTAINER}>
+                <menu style={STYLE.MENU}>
+                    <pz-sidebar ref={ref}></pz-sidebar>
+                </menu>
+                <section style={STYLE.BANNER}>
+                    <pz-banner></pz-banner>
+                </section>
+                <section style={STYLE.WRAPPER}>
+                    qweqw
+                </section>
                 {this.props.children}
-            </>
+            </div>
         )
     }
 }

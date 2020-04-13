@@ -6,48 +6,88 @@ export default class Sidebar extends HTMLElement {
         <style>
         nav {
             position: relative;
-            max-width: 350px;
             max-height: 80px;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             border-radius: 10px;
-            padding: 0 15px;
-            background: rgb(0, 0, 0);
+            background: #394264;
             box-shadow: 0 6.7px 5.3px rgba(0, 0, 0, 0.12), 0 22.3px 17.9px rgba(0, 0, 0, 0.08), 0 100px 80px rgba(0, 0, 0, 0.04);
-            overflow: hidden;
         }
         nav ul {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
             padding: 0;
+            transition: 1s;
+        }
+        nav ul:hover {
+            cursor: pointer;
+            background: #444d6e;
         }
         nav ul li {
             list-style: none;
+            width: 100%;
         }
         nav ul li a {
-            display: block;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
             width: 100%;
             height: 100%;
             cursor: pointer;
+            position: relative;
         }
-        nav ul li a svg {
+        nav ul li a svg,
+        nav ul li a span {
             fill: #fff;
             width: 20px;
             height: 20px;
-            opacity: 0.4;
+            margin-right: 5px;
+            opacity: 0.8;
             transition: opacity 100ms ease;
             pointer-events: none;
+            letter-spacing: 1px;
+            display: inline-table;
         }
-        nav ul li a.active svg{
+        nav ul li a span {
+            width: auto;
+        }
+        .btn-2:after,
+        .btn-2:before {
+          backface-visibility: hidden;
+          border: 1px solid #fff;
+          content: " ";
+          display: block;
+          margin: 0 auto;
+          transition: .3s;
+          position: absolute;
+          top: 0;
+          opacity: 0;
+          width: 0;
+        }
+        .btn-2:hover:before, .btn-2:hover:after {
+          bottom: auto;
+          top: 0;
+          width: 70%;
+          opacity: 1;
+        }
+        .btn-2:after, .btn-2:hover:after {
+            top: calc(100% - 2px );
+        }
+        .active:hover:before, .active:hover:after{
+            opacity: 0;
+        }
+        nav ul li a.active svg,
+        nav ul li a.active span{
             opacity: 1;
         }
         nav .tubelight {
             position: absolute;
             left: 0px;
-            top: 0px;
-            transform: translateX(-50%);
-            width: 45px;
+            top: -5px;
+            transform: translateX(-75%);
+            width: 100px;
             height: 5px;
             border-radius: 5px;
             background: #ffffff;
@@ -56,10 +96,10 @@ export default class Sidebar extends HTMLElement {
         }
         nav .tubelight .light-ray {
             position: absolute;
-            left: -30%;
+            left: -50%;
             top: 5px;
-            width: 160%;
-            height: 80px;
+            width: 200%;
+            height: 75px;
             clip-path: polygon(5% 100%, 25% 0px, 75% 0px, 95% 100%);
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) -50%, rgba(255, 255, 255, 0) 90%);
             pointer-events: none;
@@ -68,36 +108,41 @@ export default class Sidebar extends HTMLElement {
         <nav>
             <ul data-path="home">
                 <li>
-                    <a class="active">
+                    <a class="active btn-2">
                         <svg><use xlink:href="#home-icon"></use></svg>
+                        <span>简历</span>
                     </a>
                 </li>
             </ul>
             <ul data-path="detail">
                 <li>
-                    <a>
+                    <a class="btn-2">
                         <svg><use xlink:href="#bookmark-icon"></use></svg>
+                        <span>detail</span>
                     </a>
                 </li>
             </ul>
             <ul data-path="plus">
                 <li>
-                    <a>
+                    <a class="btn-2">
                         <svg><use xlink:href="#plus-icon"></use></svg>
+                        <span>plus</span>
                     </a>
                 </li>
             </ul>
             <ul data-path="user">
                 <li>
-                    <a>
+                    <a class="btn-2">
                         <svg><use xlink:href="#user-icon"></use></svg>
+                        <span>user</span>
                     </a>
                 </li>
             </ul>
             <ul data-path="settings">
                 <li>
-                    <a>
+                    <a class="btn-2">
                         <svg><use xlink:href="#settings-icon"></use></svg>
+                        <span>settings</span>
                     </a>
                 </li>
             </ul>
@@ -143,7 +188,7 @@ export default class Sidebar extends HTMLElement {
         let increment = 1;
         links.forEach((link, index) => {
             if (links[index].classList.contains("active")) {
-                light.style.left = `${links[index].offsetLeft + light.offsetWidth / (links.length - 1)}px`;
+                light.style.left = `${links[index].offsetLeft + links[index].offsetWidth / 2 + light.offsetWidth / (links.length - 1)}px`;
             }
 
             link.addEventListener("click", e => {
@@ -161,7 +206,7 @@ export default class Sidebar extends HTMLElement {
                         clearInterval(t);
                     }
                 }, 50);
-                light.style.left = `${e.target.offsetLeft + light.offsetWidth / (links.length - 1)}px`;
+                light.style.left = `${e.target.offsetLeft + e.target.offsetWidth / 2 + light.offsetWidth / (links.length - 1)}px`;
             });
         });
     }
