@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 80
 
-app.use(express.static('/build'))
+app.use('/static', express.static('build'))
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
