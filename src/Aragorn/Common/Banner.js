@@ -110,6 +110,7 @@ export default class Banner extends HTMLElement {
             display: inline-block;
             position: relative;
             overflow: hidden;
+            border-radius: 10px 10px 0 0;
         }
         .beer-slider svg {
             vertical-align: bottom;
@@ -137,7 +138,7 @@ export default class Banner extends HTMLElement {
             position: absolute;
             z-index: 2;
             bottom: 0;
-            height: 10rem;
+            height: 5rem;
             margin: 0;
             left: -1px;
             width: calc(100% + 2px);
@@ -184,7 +185,7 @@ export default class Banner extends HTMLElement {
             color: #000;
             transition: opacity 1s;
             transform: translateX(-50%);
-            height: 10rem;
+            height: 5rem;
             width: 100%;
             left: 50%;
             bottom: 0;
@@ -277,7 +278,7 @@ export default class Banner extends HTMLElement {
 
         @media (max-width: 37.5em) {
             h3 {
-              font-size: 2rem;
+              font-size: 1rem;
             }
             .b1 {
               left: 2rem;
@@ -291,14 +292,13 @@ export default class Banner extends HTMLElement {
         }
           
         main {
-            margin: 2rem auto;
             max-width: 48rem;
-            padding: 0 1rem;
             overflow: hidden;
             position: relative;
         }
         main section#more,
         main section#less {
+            padding: 1rem;
             transition: .3s;
             opacity: 0;
             left: -100%;
@@ -364,7 +364,7 @@ export default class Banner extends HTMLElement {
         `
     }
     connectedCallback() {
-        const slider = new BeerSlider(this.shadowRoot.getElementById("slider"), { start: 70, callback: () => {
+        const slider = new BeerSlider(this.shadowRoot.getElementById("slider"), { start: 100, callback: () => {
             if (Array.from(slider.element.classList).includes('more')) {
                 this.shadowRoot.querySelectorAll('main section').forEach(el => {
                     el.classList.remove('active')

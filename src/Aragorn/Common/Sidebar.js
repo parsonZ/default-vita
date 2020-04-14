@@ -10,7 +10,9 @@ export default class Sidebar extends HTMLElement {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             border-radius: 10px;
-            background: #394264;
+            background: #FFF;
+            color: #000;
+            font-weight: bold;
             box-shadow: 0 6.7px 5.3px rgba(0, 0, 0, 0.12), 0 22.3px 17.9px rgba(0, 0, 0, 0.08), 0 100px 80px rgba(0, 0, 0, 0.04);
         }
         nav ul {
@@ -23,7 +25,6 @@ export default class Sidebar extends HTMLElement {
         }
         nav ul:hover {
             cursor: pointer;
-            background: #444d6e;
         }
         nav ul li {
             list-style: none;
@@ -40,7 +41,6 @@ export default class Sidebar extends HTMLElement {
         }
         nav ul li a svg,
         nav ul li a span {
-            fill: #fff;
             width: 20px;
             height: 20px;
             margin-right: 5px;
@@ -56,7 +56,7 @@ export default class Sidebar extends HTMLElement {
         .btn-2:after,
         .btn-2:before {
           backface-visibility: hidden;
-          border: 1px solid #fff;
+          border: 1px solid #2d3246;
           content: " ";
           display: block;
           margin: 0 auto;
@@ -87,10 +87,10 @@ export default class Sidebar extends HTMLElement {
             left: 0px;
             top: -5px;
             transform: translateX(-75%);
-            width: 100px;
+            width: 5rem;
             height: 5px;
             border-radius: 5px;
-            background: #ffffff;
+            background: #FFF;
             transition: left 400ms ease;
             z-index: 10;
         }
@@ -101,15 +101,130 @@ export default class Sidebar extends HTMLElement {
             width: 200%;
             height: 75px;
             clip-path: polygon(5% 100%, 25% 0px, 75% 0px, 95% 100%);
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) -50%, rgba(255, 255, 255, 0) 90%);
+            background: linear-gradient(to bottom, rgb(200, 200, 200) -50%, rgba(255, 255, 255, 0) 90%);
             pointer-events: none;
         }
+        #cllopse {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            #cllopse {
+                display: inline-block;
+                cursor: pointer;
+                background: #fff;
+                top: 6px;
+            }
+            #cllopse.is-active {
+                width: 100%;
+            }
+            #cllopse.is-active .hamb-top{
+                transform: translate(-10%, 7px) rotate(-45deg);
+                width: 20px;
+            }
+            #cllopse.is-active .hamb-middle{
+                display: none;
+            }
+            #cllopse.is-active .hamb-bottom{
+                transform: translate(-10%, -11px) rotate(45deg);
+                width: 20px;
+            }
+            nav {
+                position: absolute;
+                display: block;
+                box-shadow: none;
+                height: 100vh;
+                border-radius: 0;
+                top: 0;
+                z-index: 10001;
+                width: 15rem;
+                left: -65%;
+                max-height: 100vh;
+                background: #fff;
+                transition: .3s;
+            }
+            nav.is-opend {
+                left: 0;
+            }
+            nav ul li a {
+                transition: .5s;
+                padding: 10px 0;
+            }
+            nav ul li a.active {
+                background: #2d3246;
+                color: #fff;
+            }nav ul li a.active svg {
+                fill: #fff;
+            }
+            .tubelight {
+                display: none;
+            }
+            .hamburger {
+                background: transparent;
+                border: none;
+                display: block;
+                height: 32px;
+                position: relative;
+                width: calc(100% + 3rem);
+                z-index: 999;
+            }
+            .hamburger.is-closed:before {
+                transform: translate3d(0, 0, 0);
+                transition: all 0.35s ease-in-out;
+                color: #ffffff;
+                content: '';
+                display: block;
+                font-size: 14px;
+                line-height: 32px;
+                opacity: 0;
+                text-align: center;
+                width: 100px;
+            }
+            .hamburger.is-opend .hamb-top, .hamburger.is-opend .hamb-middle, .hamburger.is-opend .hamb-bottom, .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-middle, .hamburger.is-open .hamb-bottom {
+                height: 4px;
+                right: 10px;
+                position: absolute;
+                width: 25px;
+            }
+            .hamburger.is-opend .hamb-top {
+                transition: all 0.35s ease-in-out;
+                background-color: #2d3246;
+                top: 5px;
+            }
+            .hamburger.is-opend .hamb-middle {
+                background-color: #2d3246;
+                margin-top: -2px;
+                top: 50%;
+            }
+            .hamburger.is-opend .hamb-bottom {
+                transition: all 0.35s ease-in-out;
+                background-color: #2d3246;
+                bottom: 5px;
+            }
+            h3 {
+              font-size: 1rem;
+            }
+            .b1 {
+              left: 2rem;
+            }
+            .b2 {
+              right: 2rem;
+            }
+            .ctnr-summer:after {
+              background: linear-gradient(180deg, #2a2d4e, transparent 120%);
+            }
+        }
         </style>
+        
         <nav>
-            <ul data-path="home">
+            <div id="cllopse" class="hamburger is-opend">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </div>
+            <ul data-path="resume">
                 <li>
                     <a class="active btn-2">
-                        <svg><use xlink:href="#home-icon"></use></svg>
+                        <svg><use xlink:href="#resume-icon"></use></svg>
                         <span>简历</span>
                     </a>
                 </li>
@@ -153,7 +268,7 @@ export default class Sidebar extends HTMLElement {
         </nav>
 
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="home-icon">
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="resume-icon">
                 <path
                         d="M13.1428571,14.5 C13.6571429,14.5 14,14.175507 14,13.6887676 L14,6.38767551 C14,6.14430577 13.9142857,5.90093604 13.6571429,5.73868955 L8.51428571,1.6825273 C8.17142857,1.43915757 7.74285714,1.43915757 7.4,1.6825273 L2.25714286,5.73868955 C2.08571429,5.90093604 2,6.14430577 2,6.38767551 L2,13.6887676 C2,14.175507 2.34285714,14.5 2.85714286,14.5 L13.1428571,14.5 Z M5.42857143,12.8775351 L3.71428571,12.8775351 L3.71428571,6.79329173 L8,3.38611544 L12.2857143,6.79329173 L12.2857143,12.8775351 L10.5714286,12.8775351 L5.42857143,12.8775351 Z">
                 </path>
@@ -183,6 +298,19 @@ export default class Sidebar extends HTMLElement {
     connectedCallback() {
         const links = [...this.shadowRoot.querySelectorAll("nav a")];
         const light = this.shadowRoot.querySelector("nav .tubelight");
+        const cllopse = this.shadowRoot.querySelector('#cllopse')
+        const nav = this.shadowRoot.querySelector('nav')
+        cllopse.addEventListener('click', () => {
+            if (cllopse.classList.contains("is-active")) {
+                nav.classList.remove('is-opend')
+                cllopse.classList.remove('is-active')
+                nav.classList.add('is-closed')
+            } else {
+                cllopse.classList.add('is-active')
+                nav.classList.remove('is-closed')
+                nav.classList.add('is-opend')
+            }
+        })
         let activeIndex = 0;
         let currentIndex = 0;
         let increment = 1;
