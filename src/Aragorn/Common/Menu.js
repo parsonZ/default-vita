@@ -122,7 +122,7 @@ export default class Menu extends HTMLElement {
                 .menu ul li:focus {
                     outline: none;
                 }
-                @media screen and (max-width: 900px) and (min-width: 400px) {
+                @media screen and (max-width: 980px) and (min-width: 768px) {
                     body {
                         padding-left: 90px;
                     }
@@ -188,7 +188,7 @@ export default class Menu extends HTMLElement {
                         transform: translate3d(0px, -50%, 0);
                     }
                 }
-                @media screen and (max-width: 400px) {
+                @media screen and (max-width: 768px) {
                     body {
                         padding-left: 0;
                     }

@@ -70,7 +70,7 @@
     }
   }
 
-  @media screen and (max-width: 900px) and (min-width: 400px) {
+  @media screen and (max-width: 980px) and (min-width: 768px) {
     body {
         padding-left: 90px;
     }
@@ -78,7 +78,7 @@
         left: calc(50% + 90px / 2 - 32px);
     }
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 768px) {
     body {
         padding-left: 0;
     }
