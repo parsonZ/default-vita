@@ -107,15 +107,17 @@ export default class Sidebar extends HTMLElement {
         #cllopse {
             display: none;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
             #cllopse {
                 display: inline-block;
                 cursor: pointer;
                 background: #fff;
-                top: 6px;
+                top: 0;
+                left: 0;
+                position: fixed;
             }
             #cllopse.is-active {
-                width: 100%;
+                width: 15rem;
             }
             #cllopse.is-active .hamb-top{
                 transform: translate(-10%, 7px) rotate(-45deg);
@@ -129,12 +131,12 @@ export default class Sidebar extends HTMLElement {
                 width: 20px;
             }
             nav {
-                position: absolute;
+                position: fixed;
                 display: block;
                 box-shadow: none;
-                height: 100vh;
+                height: calc(100vh - 32px);
                 border-radius: 0;
-                top: 0;
+                top: 32px;
                 z-index: 10001;
                 width: 15rem;
                 left: -65%;
@@ -164,7 +166,7 @@ export default class Sidebar extends HTMLElement {
                 display: block;
                 height: 32px;
                 position: relative;
-                width: calc(100% + 3rem);
+                width: 45px;
                 z-index: 999;
             }
             .hamburger.is-closed:before {
@@ -215,12 +217,13 @@ export default class Sidebar extends HTMLElement {
         }
         </style>
         
+        <div id="cllopse" class="hamburger is-opend">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </div>
+
         <nav>
-            <div id="cllopse" class="hamburger is-opend">
-                <span class="hamb-top"></span>
-                <span class="hamb-middle"></span>
-                <span class="hamb-bottom"></span>
-            </div>
             <ul data-path="resume">
                 <li>
                     <a class="active btn-2">
