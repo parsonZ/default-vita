@@ -110,7 +110,7 @@ export default class Banner extends HTMLElement {
             display: inline-block;
             position: relative;
             overflow: hidden;
-            border-radius: 10px 10px 0 0;
+            border-radius: 5px 5px 0 0;
         }
         .beer-slider svg {
             vertical-align: bottom;

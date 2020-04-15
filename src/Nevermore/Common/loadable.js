@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
+import { Skeleton } from 'antd';
 let raf
 
 export class Fallback extends Component {
+    constructor () {
+        super()
+        this.state = {
+            showSkeleton: false
+        }
+    }
     componentDidMount() {
+        this.setState({
+            showSkeleton: true
+        })
         cancelAnimationFrame(raf)
         raf = requestAnimationFrame(() => { 
             if (document.getElementById('loading')) {
@@ -11,6 +21,9 @@ export class Fallback extends Component {
          })
     }
     componentWillUnmount() {
+        this.setState({
+            showSkeleton: false
+        })
         cancelAnimationFrame(raf)
         raf = requestAnimationFrame(() => {
             if (document.getElementById('loading')) {
@@ -19,7 +32,7 @@ export class Fallback extends Component {
         })
     }
     render() {
-        return null
+        return this.state.showSkeleton ? <Skeleton /> : null
     }
 }
 

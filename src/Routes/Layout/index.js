@@ -1,29 +1,25 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { withRouter } from 'react-router-dom'
-import '../../Aragorn/Common/Sidebar' // 载入web-components
-import { Grid, Row, Col } from 'react-flexbox-grid'
+import '../../Aragorn/Common/Menu' // 载入web-components
 
 const STYLE = {
-    CONTAINER: {
-        maxWidth: '980px',
-        margin: '0 auto'
+    WRAP: {
+        padding: '15px'
     },
-    MENU: {
-        padding: 0
-    },
-    BANNER: {
+    MAIN: {
         background: '#FFF',
-        color: '#000',
-        borderRadius: '10px',
-        marginBottom: '1rem'
+        borderRadius: '5px',
+        boxShadow: '0 0 17px 8px #ddd',
+        padding: '15px'
     }
 }
 
 const ref = React.createRef()
 class Layout extends React.Component {
+
     componentDidMount() {
-        ref.current.shadowRoot.querySelectorAll("nav ul").forEach(el => {
+        ref.current.shadowRoot.querySelectorAll("nav ul li").forEach(el => {
             el.addEventListener('click', () => this.handleClick(el))
         })
     }
@@ -34,22 +30,28 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <section style={STYLE.CONTAINER}>
-                <Grid fluid>
-                    <Row>
-                        <Col xs={12} sm={12} md={12} lg={12}>
-                            <menu style={STYLE.MENU}>
-                                <pz-sidebar ref={ref}></pz-sidebar>
-                            </menu>
-                        </Col>
-                        <Col xs={12} sm={12} md={12} lg={12}>
-                            <section style={STYLE.BANNER}>
-                                {this.props.children}
-                            </section>
-                        </Col>
-                    </Row>
-                </Grid>
-            </section>
+            <>
+                <section>
+                    <pz-menu
+                        ref={ref}
+                        routes='[{
+                            "path": "resume", "label": "简历 resume", "icon": "dashboard"
+                        }, {
+                            "path": "article", "label": "文章 article", "icon": "customers"
+                        }, {
+                            "path": "other", "label": "其他 other", "icon": "users"
+                        }, {
+                            "path": "settings", "label": "设置 settings", "icon": "settings"
+                        }]'
+                    >
+                    </pz-menu>
+                </section>
+                <section style={STYLE.WRAP}>
+                    <main style={STYLE.MAIN}>
+                        {this.props.children}
+                    </main>
+                </section>
+            </>
         )
     }
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
 
-class Plus extends React.Component {
+class Other extends React.Component {
     render() {
         return (
             <div>
-                Plus
+                Other
             </div>
         )
     }
 }
 
-export default hot(Plus)
+export default hot(Other)

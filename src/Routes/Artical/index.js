@@ -1,14 +1,14 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
 
-class User extends React.Component {
+class Artical extends React.Component {
     render() {
         return (
             <div>
-                User
+                Artical
             </div>
         )
     }
 }
 
-export default hot(User)
+export default hot(Artical)

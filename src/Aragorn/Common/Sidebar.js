@@ -234,37 +234,12 @@ export default class Sidebar extends HTMLElement {
                     </a>
                 </li>
             </ul>
-            <ul data-path="detail">
+            <ul data-path="article">
                 <li>
                     <a class="btn-2">
-                        <svg><use xlink:href="#bookmark-icon"></use></svg>
+                        <svg><use xlink:href="#article-icon"></use></svg>
                         <span>detail</span>
                     </a>
-                </li>
-            </ul>
-            <ul data-path="plus">
-                <li>
-                    <a class="btn-2">
-                        <svg><use xlink:href="#plus-icon"></use></svg>
-                        <span>plus</span>
-                    </a>
-                </li>
-            </ul>
-            <ul data-path="user">
-                <li>
-                    <a class="btn-2">
-                        <svg><use xlink:href="#user-icon"></use></svg>
-                        <span>user</span>
-                    </a>
-                </li>
-            </ul>
-            <ul data-path="settings">
-                <li>
-                    <a class="btn-2">
-                        <svg><use xlink:href="#settings-icon"></use></svg>
-                        <span>settings</span>
-                    </a>
-                </li>
             </ul>
 
             <div class="tubelight">
@@ -290,7 +265,7 @@ export default class Sidebar extends HTMLElement {
                 <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M12 2C6.48 2 2 6.48001 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48001 17.52 2 12 2ZM11 7V11H7V13H11V17H13V13H17V11H13V7H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z" />
             </symbol>
-            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="bookmark-icon">
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="article-icon">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M7 3H17C18.1 3 19 3.89999 19 5V21L12 18L5 21V5C5 3.89999 5.90002 3 7 3ZM12 15.82L17 18V5H7V18L12 15.82Z" />
             </symbol>
@@ -320,8 +295,8 @@ export default class Sidebar extends HTMLElement {
         let currentIndex = 0;
         let increment = 1;
         links.forEach((link, index) => {
-            if (links[index].classList.contains("active")) {
-                light.style.left = `${links[index].offsetLeft + links[index].offsetWidth / 2 + light.offsetWidth / (links.length - 1)}px`;
+            if (link.classList.contains("active")) {
+                light.style.left = `${link.offsetLeft + link.offsetWidth / 2 }px`;
             }
 
             link.addEventListener("click", e => {

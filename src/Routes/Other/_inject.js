@@ -2,13 +2,13 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { resolveComponents } from '../../Eden/Utils/handleComponents'
 
-const Detail = resolveComponents(() => import('./'))
+const Other = resolveComponents(() => import('./'))
 
 export default
 <Route
-    path="/(.*)+/detail"
-    key="detail"
+    path="/(.*)+/other"
+    key="other"
     component={
-        () => <Detail />
+        () => <Other />
     }
 />
