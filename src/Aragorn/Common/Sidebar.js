@@ -120,7 +120,7 @@ export default class Sidebar extends HTMLElement {
             }
             #cllopse.is-active {
                 width: 15rem;
-                top: 0;
+                top: 0 !important;
             }
             #cllopse.is-active .hamb-top{
                 transform: translate(-10%, 7px) rotate(-45deg);
@@ -220,7 +220,7 @@ export default class Sidebar extends HTMLElement {
         }
         </style>
         
-        <div id="cllopse" class="hamburger is-opend">
+        <div id="cllopse" class="hamburger is-opend" draggable="true">
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
@@ -316,6 +316,12 @@ export default class Sidebar extends HTMLElement {
                 nav.classList.remove('is-closed')
                 nav.classList.add('is-opend')
             }
+        })
+        cllopse.addEventListener('drag', (e) => {
+            cllopse.style.top = (e.pageY < 0 ? 0 : e.pageY) + 'px'
+        })
+        cllopse.addEventListener('dragend', (e) => {
+            cllopse.style.top = (e.pageY < 0 ? 0 : e.pageY) + 'px'
         })
         let activeIndex = 0;
         let currentIndex = 0;
