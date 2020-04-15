@@ -115,7 +115,6 @@ export default class Sidebar extends HTMLElement {
                 top: 32px;
                 left: 0;
                 position: fixed;
-                transition: .3s;
                 z-index: 1000;
             }
             #cllopse.is-active {
@@ -220,7 +219,7 @@ export default class Sidebar extends HTMLElement {
         }
         </style>
         
-        <div id="cllopse" class="hamburger is-opend" draggable="true">
+        <div id="cllopse" class="hamburger is-opend">
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
@@ -317,12 +316,6 @@ export default class Sidebar extends HTMLElement {
                 nav.classList.add('is-opend')
             }
         })
-        cllopse.addEventListener('drag', (e) => {
-            cllopse.style.top = (e.pageY < 0 ? 0 : e.pageY) + 'px'
-        })
-        cllopse.addEventListener('dragend', (e) => {
-            cllopse.style.top = (e.pageY < 0 ? 0 : e.pageY) + 'px'
-        })
         let activeIndex = 0;
         let currentIndex = 0;
         let increment = 1;
@@ -349,6 +342,31 @@ export default class Sidebar extends HTMLElement {
                 light.style.left = `${e.target.offsetLeft + e.target.offsetWidth / 2 + light.offsetWidth / (links.length - 1)}px`;
             });
         });
+        let cur = { x:0, y:0 }
+        let ny, dy, y;
+        let flag = false;
+        const down = (e) => {
+            flag = true;
+            let touch = e.touches ? e.touches[0] : e
+            cur.y = touch.clientY;
+            dy = cllopse.offsetTop;
+        }
+        const move = (e) => {
+            if (flag) {
+                let touch = e.touches ? e.touches[0] : e
+                ny = touch.clientY - cur.y;
+                y = dy + ny;
+                cllopse.style.top = y +'px';
+            }
+            e.preventDefault()
+        }
+        const end = () => flag = false
+        cllopse.addEventListener('mousedown', e => down(e));
+        cllopse.addEventListener('touchstart', e => down(e))
+        cllopse.addEventListener('mousemove', e => move(e));
+        cllopse.addEventListener('touchmove', e => move(e))
+        document.body.addEventListener('mouseup', e => end(e));
+        cllopse.addEventListener('touchend', e => end(e));
     }
 }
 
