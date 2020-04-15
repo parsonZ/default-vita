@@ -112,12 +112,15 @@ export default class Sidebar extends HTMLElement {
                 display: inline-block;
                 cursor: pointer;
                 background: #fff;
-                top: 0;
+                top: 32px;
                 left: 0;
                 position: fixed;
+                transition: .3s;
+                z-index: 1000;
             }
             #cllopse.is-active {
                 width: 15rem;
+                top: 0;
             }
             #cllopse.is-active .hamb-top{
                 transform: translate(-10%, 7px) rotate(-45deg);
@@ -137,9 +140,9 @@ export default class Sidebar extends HTMLElement {
                 height: calc(100vh - 32px);
                 border-radius: 0;
                 top: 32px;
-                z-index: 10001;
+                z-index: 999;
                 width: 15rem;
-                left: -65%;
+                left: -100%;
                 max-height: 100vh;
                 background: #fff;
                 transition: .3s;
