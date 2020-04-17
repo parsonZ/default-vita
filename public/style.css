@@ -4,6 +4,10 @@
     padding-left: 240px;
   }
 
+  main {
+    padding: 10px;
+  }
+
   .loader {
     position: absolute;
     top: calc(50% - 32px);

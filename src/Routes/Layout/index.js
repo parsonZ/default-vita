@@ -5,13 +5,9 @@ import '../../Aragorn/Common/Menu' // 载入web-components
 
 const STYLE = {
     WRAP: {
-        padding: '15px'
-    },
-    MAIN: {
+        margin: '10px',
         background: '#FFF',
-        borderRadius: '5px',
-        boxShadow: '0 0 17px 8px #ddd',
-        padding: '15px'
+        borderRadius: '5px'
     }
 }
 
@@ -47,9 +43,7 @@ class Layout extends React.Component {
                     </pz-menu>
                 </section>
                 <section style={STYLE.WRAP}>
-                    <main style={STYLE.MAIN}>
-                        {this.props.children}
-                    </main>
+                    {this.props.children}
                 </section>
             </>
         )

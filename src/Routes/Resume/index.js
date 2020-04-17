@@ -26,7 +26,7 @@ const Home = () => {
     })
 
     return (
-        <>
+        <main>
             <pz-banner></pz-banner>
             <Row>
                 <Col>
@@ -46,7 +46,7 @@ const Home = () => {
                     </Timeline>
                 </Col>
             </Row>
-        </>
+        </main>
     )
 }
 
