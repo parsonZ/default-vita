@@ -20,7 +20,7 @@ span {
   font-size: inherit;
   font-family: inherit;
   &.learn-more {
-    width: 10em;
+    width: 12em;
     height: auto;
     .circle {
       @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
@@ -65,7 +65,7 @@ span {
       left: 0;
       right: 0;
       bottom: 0;
-      margin: 0 0 0 1.85rem;
+      margin: 0 0 0 2.2rem;
       color: $black;
       text-transform: uppercase;
       display: flex;

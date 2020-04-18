@@ -1,7 +1,8 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { withRouter } from 'react-router-dom'
-import '@src/Aragorn/Common/Menu' // 载入web-components
+import '@src/Aragorn/Common/Menu'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const STYLE = {
     WRAP: {
@@ -42,7 +43,15 @@ class Layout extends React.Component {
                     </pz-menu>
                 </section>
                 <section style={STYLE.WRAP}>
-                    {this.props.children}
+                    <TransitionGroup>
+                        <CSSTransition
+                            key={this.props.location.pathname}
+                            classNames='router-transition'
+                            timeout={{ enter: 500, exit: 300 }}
+                        >
+                            <div>{this.props.children}</div>
+                        </CSSTransition>
+                    </TransitionGroup>
                 </section>
             </>
         )

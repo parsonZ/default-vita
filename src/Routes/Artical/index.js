@@ -2,26 +2,33 @@ import React from 'react';
 import { hot } from 'react-hot-loader/root'
 import { Row, Col, Card } from 'antd';
 import LikeButton from '@src/Aragorn/Common/LikeButton'
+import Content from './Content'
+import { useSelector, useDispatch } from 'react-redux'
+import { CONTENT_SHOW } from '@src/Store/Actions/Common/instance'
 
 const Cardbody = (props) => {
-    
+    const dispatch = useDispatch()
     const handleClick = React.useCallback(() => {
-        alert(1)
-    }, [])
+        dispatch({
+            type: CONTENT_SHOW,
+            payload: true
+        })
+    }, [dispatch])
 
     return (
-        <article>
-            <p>
-                {props.desc}
-            </p>
+        <Card title={props.title}>
+            <p>{props.desc}</p>
             <footer>
-                <LikeButton onClick={handleClick}>1231</LikeButton>
+                <LikeButton onClick={handleClick}>Learn Morn</LikeButton>
             </footer>
-        </article>
+            {props.showContent ? <Content>{props.desc}</Content> : null}
+            {/* {content 组件应该在全局} todo*/}
+        </Card>
     )
 }
 
 const Artical = () => {
+    const showContent = useSelector(state => state.Common.content.show)
     const [data,] = React.useState(Array(20).fill(null).map((v, i) => {
         return {
             title: `文章${i + 1}`,
@@ -35,15 +42,11 @@ const Artical = () => {
 
     return (
         <Row gutter={[16, 16]}>
-            {data.map(v => {
-                return (
-                    <Col xs={24} sm={12} md={12} lg={12} xl={8} key={v.id}>
-                        <Card title={v.title}>
-                            <Cardbody {...v} />
-                        </Card>
-                    </Col>
-                )
-            })}
+            {data.map((v, i) => (
+                <Col xs={24} sm={12} md={12} lg={12} xl={8} key={v.id}>
+                    <Cardbody {...v} showContent={showContent} />
+                </Col>
+            ))}
         </Row>
     )
 }

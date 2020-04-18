@@ -94,7 +94,7 @@ export default class Menu extends HTMLElement {
                     margin: 0;
                 }
                 .menu ul li {
-                    padding: 0.5em 1em 0.5em 3em;
+                    padding: 0.5em 1em 0.5em 4em;
                     font-size: 1.2em;
                     font-weight: bold;
                     background-repeat: no-repeat;
@@ -255,7 +255,7 @@ export default class Menu extends HTMLElement {
                 </div>
                 <header class="avatar">
                     <div class="mark">
-                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" />
+                        <img src="http://140.143.134.239:8000/images/avator.jpg" />
                         <div class="mark-title">
                             <span class="cname">庞宗</span>
                             <span class="line">-----------------</span>
@@ -265,10 +265,6 @@ export default class Menu extends HTMLElement {
                     <h2>一句话介绍你自己</h2>
                 </header>
                 <ul id="ul">
-                    // <li tabindex="0" class="icon-dashboard"><span>Dashboard</span></li>
-                    // <li tabindex="0" class="icon-customers"><span>Customers</span></li>
-                    // <li tabindex="0" class="icon-users"><span>Users</span></li>
-                    // <li tabindex="0" class="icon-settings"><span>Settings</span></li>
                 </ul>
             </nav>
         `
