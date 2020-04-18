@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { resolveComponents } from '../../Eden/Utils/handleComponents'
+import { resolveComponents } from '@src/Eden/Utils/handleComponents'
 
 const Settings = resolveComponents(() => import('./'))
 

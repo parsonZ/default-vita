@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
-import '../../Aragorn/Common/Banner'
+import '@src/Aragorn/Common/Banner'
 import { Timeline } from 'antd';
 import { Row, Col } from 'antd';
 import { HomeOutlined, CheckCircleTwoTone, HeartTwoTone, FieldTimeOutlined } from '@ant-design/icons';

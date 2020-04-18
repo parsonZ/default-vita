@@ -1,11 +1,22 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
 import { Row, Col, Card } from 'antd';
+import LikeButton from '@src/Aragorn/Common/LikeButton'
 
 const Cardbody = (props) => {
+    
+    const handleClick = React.useCallback(() => {
+        alert(1)
+    }, [])
+
     return (
         <article>
-            {props.desc}
+            <p>
+                {props.desc}
+            </p>
+            <footer>
+                <LikeButton onClick={handleClick}>1231</LikeButton>
+            </footer>
         </article>
     )
 }
@@ -27,7 +38,7 @@ const Artical = () => {
             {data.map(v => {
                 return (
                     <Col xs={24} sm={12} md={12} lg={12} xl={8} key={v.id}>
-                        <Card title={v.title} extra={<span>{v.datetime}</span>}>
+                        <Card title={v.title}>
                             <Cardbody {...v} />
                         </Card>
                     </Col>
