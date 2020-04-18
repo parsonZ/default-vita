@@ -1,32 +1,40 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
-import { Collapse } from 'antd';
+import { Row, Col, Card } from 'antd';
 
-const { Panel } = Collapse;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+const Cardbody = (props) => {
+    return (
+        <article>
+            {props.desc}
+        </article>
+    )
+}
 
-class Artical extends React.Component {
-    render() {
-        return (
-            <main>
-                <Collapse accordion>
-                    <Panel header="This is panel header 1" key="1">
-                        <p>{text}</p>
-                    </Panel>
-                    <Panel header="This is panel header 2" key="2">
-                        <p>{text}</p>
-                    </Panel>
-                    <Panel header="This is panel header 3" key="3">
-                        <p>{text}</p>
-                    </Panel>
-                </Collapse>
-            </main>
-        )
-    }
+const Artical = () => {
+    const [data,] = React.useState(Array(20).fill(null).map((v, i) => {
+        return {
+            title: `文章${i + 1}`,
+            datetime: '2018-04-03 12:12:12',
+            id: i + 1,
+            author: 'parsonz',
+            author_img: '',
+            desc: '描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述'
+        }
+    }))
+
+    return (
+        <Row gutter={[16, 16]}>
+            {data.map(v => {
+                return (
+                    <Col xs={24} sm={12} md={12} lg={12} xl={8} key={v.id}>
+                        <Card title={v.title} extra={<span>{v.datetime}</span>}>
+                            <Cardbody {...v} />
+                        </Card>
+                    </Col>
+                )
+            })}
+        </Row>
+    )
 }
 
 export default hot(Artical)

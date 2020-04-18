@@ -6,7 +6,6 @@ import '../../Aragorn/Common/Menu' // 载入web-components
 const STYLE = {
     WRAP: {
         margin: '10px',
-        background: '#FFF',
         borderRadius: '5px'
     }
 }

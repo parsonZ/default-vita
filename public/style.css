@@ -6,6 +6,8 @@
 
   main {
     padding: 10px;
+    background-color: #FFF;
+    border-radius: 5px;
   }
 
   .loader {
@@ -15,7 +17,7 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    perspective: 800px;
+    perspective: 200px;
   }
 
   .inner {
@@ -44,7 +46,7 @@
     right: 0%;
     bottom: 0%;
     animation: rotate-three 1s linear infinite;
-    border-top: 3px solid #000000;
+    border-top: 3px solid #faf200;
   }
 
   @keyframes rotate-one {
@@ -85,5 +87,8 @@
   @media screen and (max-width: 768px) {
     body {
         padding-left: 0;
+    }
+    .loader {
+        left: calc(50% + 32px / 2 - 32px);
     }
   }

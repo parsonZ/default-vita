@@ -31,6 +31,7 @@ export default class Menu extends HTMLElement {
                     justify-content: center;
                     border-radius: 50%;
                     left: 50%;
+                    padding: 1.2em;
                     transform: translateX(-50%);
                 }
                 .menu .avatar .mark:before {
@@ -222,7 +223,7 @@ export default class Menu extends HTMLElement {
                     }
                     .menu ul li {
                         padding: 1em 1em 1em 3em;
-                        font-size: 1.1em;
+                        font-size: 1em;
                     }
                     .menu:focus {
                         transform: translate3d(0, 0, 0);
@@ -274,6 +275,10 @@ export default class Menu extends HTMLElement {
         shadowRoot.innerHTML = `${Style}${Html}`
     }
 
+    get elemHeihgt() {
+        return this.shadowRoot.querySelector('.smartphone-menu-trigger').offsetHeight
+    }
+
     get routes() {
         return JSON.parse(this.getAttribute('routes'))
     }
@@ -293,6 +298,12 @@ export default class Menu extends HTMLElement {
                 let touch = e.touches ? e.touches[0] : e
                 ny = touch.clientY - cur.y;
                 y = dy + ny;
+                if (y <= 0) {
+                    y = 0
+                }
+                if (y >= window.screen.height - this.elemHeihgt) {
+                    y = window.screen.height - this.elemHeihgt
+                }
                 cllopse.style.top = y +'px';
             }
             e.preventDefault()
