@@ -80,8 +80,8 @@ class Settings extends React.Component {
                         Open
                     </Button>
                     <Drawer
-                        width={'40rem'}
-                        title="Basic Drawer"
+                        width={'20em'}
+                        title="查看评论"
                         placement="right"
                         closable={false}
                         onClose={this.onClose}
