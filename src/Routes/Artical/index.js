@@ -1,38 +1,85 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
-import { Row, Col, Card } from 'antd';
+import { Card, Skeleton, Avatar, Progress } from 'antd';
+import { FieldTimeOutlined, UserOutlined } from '@ant-design/icons'
 import LikeButton from '@src/Aragorn/Common/LikeButton'
 import Content from './Content'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { CONTENT_SHOW } from '@src/Store/Actions/Common/instance'
+import Styled from 'styled-components'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
+const DivContent = Styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const DivDate = Styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    span {
+        display: flex;
+        align-items: center;
+    }
+    .anticon {
+        margin-right: 5px;
+    }
+`;
+
+const STYLE = {
+    AVATAR: {
+        margin: '30px'
+    }
+}
 
 const Cardbody = (props) => {
     const dispatch = useDispatch()
+    const [percent, setPercent] = React.useState(0)
+    const [show, setShow] = React.useState(false)
     const handleClick = React.useCallback(() => {
         dispatch({
             type: CONTENT_SHOW,
             payload: true
         })
-    }, [dispatch])
+        setPercent(100);
+        setShow(true);
+    }, [dispatch, setPercent, setShow])
 
     return (
-        <Card title={props.title}>
-            <p>{props.desc}</p>
+        <Card hoverable>
+            <Skeleton loading={false} active></Skeleton>
+            <DivContent>
+                <h2 className={show ? 'animated fadeOutUp' : ''}>{props.title}</h2>
+                <Progress
+                    style={{ width: '40%' }}
+                    strokeWidth={2}
+                    showInfo={false}
+                    percent={percent}
+                    status="active"
+                />
+                <Avatar className={show ? 'animated fadeOut' : ''} style={STYLE.AVATAR} size="large" icon={<UserOutlined />} />
+                <DivDate>
+                    <span className={show ? 'animated fadeOut' : ''}><FieldTimeOutlined />{props.month}</span>
+                    <span className={show ? 'animated fadeOut' : ''}><FieldTimeOutlined />{props.time}</span>
+                </DivDate>
+            </DivContent>
             <footer>
                 <LikeButton onClick={handleClick}>Learn Morn</LikeButton>
             </footer>
-            {props.showContent ? <Content>{props.desc}</Content> : null}
-            {/* {content 组件应该在全局} todo*/}
         </Card>
     )
 }
 
 const Artical = () => {
-    const showContent = useSelector(state => state.Common.content.show)
-    const [data,] = React.useState(Array(20).fill(null).map((v, i) => {
+    const [data,] = React.useState(Array(10).fill(null).map((v, i) => {
         return {
-            title: `文章${i + 1}`,
-            datetime: '2018-04-03 12:12:12',
+            title: `webpack如何配置${i % 2 === 0 ? 'webpack如何配置webpack如何配置' : i}`,
+            datetime: '2018-04-03  12:12:12',
+            month: '2018-04-03',
+            time: '12:12:12',
             id: i + 1,
             author: 'parsonz',
             author_img: '',
@@ -41,13 +88,19 @@ const Artical = () => {
     }))
 
     return (
-        <Row gutter={[16, 16]}>
-            {data.map((v, i) => (
-                <Col xs={24} sm={12} md={12} lg={12} xl={8} key={v.id}>
-                    <Cardbody {...v} showContent={showContent} />
-                </Col>
-            ))}
-        </Row>
+        <div className="waterfall-wrap">
+            <TransitionGroup appear={true}>
+                {data.map((v, i) => (
+                    <CSSTransition
+                        key={i}
+                        classNames='article-transition'
+                        timeout={{ enter: 500, exit: 300 }}
+                    >
+                        <div className="waterfall-item"><Cardbody {...v} /></div>
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
+        </div>
     )
 }
 

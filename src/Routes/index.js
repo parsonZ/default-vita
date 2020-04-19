@@ -6,6 +6,7 @@ import store from '@src/Store'
 import 'antd/dist/antd.css'
 import '@src/Aragorn/Styles/override.scss'
 import '@src/Aragorn/Styles/transition.scss'
+import '@src/Aragorn/Styles/animate.min.css'
 
 const history = createBrowserHistory()
 const App = () => (r => r.keys().map(k => r(k).default))(require.context('./', true, /^\.\/((?!\/)[\s\S])+\/_skeleton\.js$/))

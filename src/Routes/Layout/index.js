@@ -46,8 +46,8 @@ class Layout extends React.Component {
                     <TransitionGroup>
                         <CSSTransition
                             key={this.props.location.pathname}
-                            classNames='router-transition'
-                            timeout={{ enter: 500, exit: 300 }}
+                            classNames={this.props.location.pathname === '/base/article' ? '' : 'router-transition'}
+                            timeout={{ enter: 500, exit: this.props.location.pathname === '/base/article' ? 0 : 300 }}
                         >
                             <div>{this.props.children}</div>
                         </CSSTransition>

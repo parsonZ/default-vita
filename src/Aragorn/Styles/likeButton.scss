@@ -1,7 +1,8 @@
 
 $bg: #f3f8fa;
 $white: #fff;
-$black: #282936;
+$black: #5e5e5f;
+$hoverbackground: #5e5e5f;
 
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
   transition: $property $duration $ease;
@@ -76,6 +77,7 @@ span {
   &:hover {
     .circle {
       width: 100%;
+      background: $hoverbackground;
       .icon {
         &.arrow {
         background: $white;

@@ -15,33 +15,41 @@ body {
 /*
     antd Card style
 */
-$border: #5e5e5f;
+$border: #c1c1c1;
 .ant-card {
-    box-shadow: inset 0 0 0 2px #fff;
     border-radius: 5px;
-  
-    &::before {
-      box-sizing: inherit;
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 5px;
-    }
-  }
-  
-  .ant-card-bordered {
-      &:hover {
-        color: $border;
-      }
-    
-      &::before {
-        border-top: 3px solid $border;
-        transform: scale3d(0,1,1);
-      }
-      &:hover::before {
-        transform: scale3d(1,1,1);
-        transition: all 0.5s;
-      }
-  }
-  
+}
+
+/* waterfall */
+.waterfall-wrap {
+	column-count: 2;
+	column-gap: 1em;
+
+	.waterfall-item {
+		margin-bottom: 1em;
+		break-inside: avoid;
+
+		.ant-progress-success-bg, .ant-progress-bg {
+			transition: 1s;
+		}
+	}
+}
+
+@media all and (min-width: 1200px) {
+	.waterfall-wrap {
+		column-count: 3;
+	}
+}
+
+@media all and (max-width: 768px) {
+	.waterfall-wrap {
+		column-count: 2;
+	}
+}
+
+@media all and (max-width: 480px) {
+	.waterfall-wrap {
+		column-count: 1;
+	}
+}
+

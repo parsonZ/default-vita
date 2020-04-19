@@ -20,3 +20,16 @@
     right: -100%;
     transition: all 300ms ease-in;
 }
+
+/* article-transition */
+.article-transition-appear {
+    top: 10px;
+    opacity: 0;
+    position: relative;
+}
+
+.article-transition-appear.article-transition-appear-active {
+    opacity: 1;
+    top: 0;
+    transition: all 500ms ease-in;
+}
