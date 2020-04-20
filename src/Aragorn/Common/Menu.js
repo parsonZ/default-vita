@@ -222,7 +222,7 @@ export default class Menu extends HTMLElement {
                         transform: translateY(8px)
                     }
                     .menu ul li {
-                        padding: 1em 1em 1em 3em;
+                        padding: 1em 1em 1em 4em;
                         font-size: 1em;
                     }
                     .menu:focus {

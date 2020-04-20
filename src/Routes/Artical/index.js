@@ -66,8 +66,8 @@ const Cardbody = (props) => {
                     <span className={show ? 'animated fadeOut' : ''}><FieldTimeOutlined />{props.time}</span>
                 </DivDate>
             </DivContent>
-            <footer>
-                <LikeButton onClick={handleClick}>Learn Morn</LikeButton>
+            <footer style={{ 'display': 'flex', 'justify-content': 'center' }}>
+                <LikeButton onClick={handleClick} show={show}>Learn Morn</LikeButton>
             </footer>
         </Card>
     )
