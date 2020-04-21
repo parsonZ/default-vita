@@ -1,1 +1,3 @@
 export const CONTENT_SHOW = 'CONTENT_SHOW'
+
+export const GET_ARTICLE_DETAILS = 'GET_ARTICLE_DETAILS'

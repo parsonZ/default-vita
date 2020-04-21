@@ -3,9 +3,9 @@ import { hot } from 'react-hot-loader/root'
 import { Card, Skeleton, Avatar, Progress } from 'antd';
 import { FieldTimeOutlined, UserOutlined } from '@ant-design/icons'
 import LikeButton from '@src/Aragorn/Common/LikeButton'
-import Content from './Content'
+// import Content from './Content'
 import { useDispatch } from 'react-redux'
-import { CONTENT_SHOW } from '@src/Store/Actions/Common/instance'
+import { CONTENT_SHOW, GET_ARTICLE_DETAILS } from '@src/Store/Actions/Common/instance'
 import Styled from 'styled-components'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -46,6 +46,9 @@ const Cardbody = (props) => {
         })
         setPercent(100);
         setShow(true);
+        dispatch({
+            type: GET_ARTICLE_DETAILS
+        })
     }, [dispatch, setPercent, setShow])
 
     return (
@@ -66,8 +69,8 @@ const Cardbody = (props) => {
                     <span className={show ? 'animated fadeOut' : ''}><FieldTimeOutlined />{props.time}</span>
                 </DivDate>
             </DivContent>
-            <footer style={{ 'display': 'flex', 'justify-content': 'center' }}>
-                <LikeButton onClick={handleClick} show={show}>Learn Morn</LikeButton>
+            <footer style={{ 'display': 'flex', 'justifyContent': 'center' }}>
+                <LikeButton onClick={handleClick} show={show.toString()}>Learn Morn</LikeButton>
             </footer>
         </Card>
     )
