@@ -320,7 +320,7 @@ export default class Banner extends HTMLElement {
             <div class="ctnr ctnr-winter">
                 <svg class="winter" width="100%" height="100%" viewBox="0 0 600 361" preserveAspectRatio="xMidYMid slice" aria-labelledby="title1" aria-role="img">
                     <title id="title1">Baltic seashore -sepicol</title>
-                    <image xlink:href="http://140.143.134.239:8000/images/winter.jpg" x="0" y="0" width="100%" height="100%"></image>
+                    <image xlink:href="http://localhost:8000/static/winter.jpg" x="0" y="0" width="100%" height="100%"></image>
                 </svg>
                 <section class="b b2">
                     <h3>项目2</h3>
@@ -333,7 +333,7 @@ export default class Banner extends HTMLElement {
                 <div class="ctnr ctnr-summer">
                     <svg width="100%" height="100%" viewBox="0 0 600 361" preserveAspectRatio="xMidYMid slice" aria-labelledby="title2" aria-role="img">
                         <title id="title2">Baltic seashore - warmshphere preset applied</title>
-                        <image xlink:href="http://140.143.134.239:8000/images/warmsphere-baltic.jpg" x="0" y="0" width="100%" height="100%"></image>
+                        <image xlink:href="http://localhost:8000/static/warmsphere-baltic.jpg" x="0" y="0" width="100%" height="100%"></image>
                     </svg>
                     <section class="b b1">
                         <h3>项目1</h3>

@@ -255,7 +255,7 @@ export default class Menu extends HTMLElement {
                 </div>
                 <header class="avatar">
                     <div class="mark">
-                        <img src="http://140.143.134.239:8000/images/avator.jpg" />
+                        <img src="http://localhost:8000/static/avator.jpg" />
                         <div class="mark-title">
                             <span class="cname">庞宗</span>
                             <span class="line">-----------------</span>

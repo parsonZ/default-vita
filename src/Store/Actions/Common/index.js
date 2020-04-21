@@ -1,6 +1,7 @@
 import {
     CONTENT_SHOW,
-    GET_ARTICLE_DETAILS
+    GET_ARTICLE_DETAILS,
+    NOTIFICATION
 } from './instance'
 
 export const setContentShow = payload => ({
@@ -12,3 +13,9 @@ export const getArticleDetails = () => ({
     type: GET_ARTICLE_DETAILS
 })
 
+export function dispatchNotification(payload) {
+    return {
+        type: NOTIFICATION,
+        payload
+    }
+}
