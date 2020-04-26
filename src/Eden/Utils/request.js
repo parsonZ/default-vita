@@ -6,7 +6,7 @@ import { catchError, switchMap, scan, retryWhen, delayWhen, tap, timeout, map } 
 
 const giveMeUrl = (action, params) => {
     
-    let publicUrl = 'http://localhost'
+    let publicUrl = process.env.REACT_APP_URL
 
     let url = action.url
 

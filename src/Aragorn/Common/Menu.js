@@ -255,7 +255,7 @@ export default class Menu extends HTMLElement {
                 </div>
                 <header class="avatar">
                     <div class="mark">
-                        <img src="http://localhost:8000/static/avator.jpg" />
+                        <img src="${process.env.REACT_APP_URL}/static/avator.jpg" />
                         <div class="mark-title">
                             <span class="cname">庞宗</span>
                             <span class="line">-----------------</span>
