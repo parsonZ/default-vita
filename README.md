@@ -1,6 +1,7 @@
 # [james-bond](https://en.wikipedia.org/wiki/James_Bond)
 
 新情报平台（2018.02.01 - 至今）
+test
 
 ## 目录结构
 
