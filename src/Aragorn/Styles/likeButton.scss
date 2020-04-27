@@ -7,7 +7,6 @@ $hoverbackground: #5e5e5f;
 @mixin transition($property: all, $duration: 0.45s, $ease: cubic-bezier(0.65,0,.076,1)) {
   transition: $property $duration $ease;
 }
-
 span {
   position: relative;
   display: inline-block;
@@ -62,7 +61,7 @@ span {
           left: 0;
           &:before {
             border: none;
-            background: url(%process.env.REACT_APP_URL%/static/loading.svg) no-repeat;
+            background: url('../../Aisling/loading.svg') no-repeat;
             width: 100%;
             height: 100%;
             transform: rotate(0);

@@ -6,7 +6,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const STYLE = {
     WRAP: {
-        margin: '10px',
+        padding: '10px',
         borderRadius: '5px'
     }
 }

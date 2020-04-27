@@ -1,18 +1,17 @@
 import produce from 'immer'
-import { NOTIFICATION} from '@src/Store/Actions/Common/instance'
+import {
+    CURRENT_ID
+} from '@src/Store/Actions/Article/instance'
 
 const initialState = {
-    content: {
-        show: false
-    },
-    notification: ''
+    current: {}
 }
 
 export default (state = initialState, action) => produce(
     state, draft => {
         switch (action.type) {
-            case NOTIFICATION:
-                draft.notification = action.payload
+            case CURRENT_ID:
+                draft.current = action.payload
                 return
             default:
                 return

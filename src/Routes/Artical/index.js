@@ -3,9 +3,8 @@ import { hot } from 'react-hot-loader/root'
 import { Card, Skeleton, Avatar, Progress } from 'antd';
 import { FieldTimeOutlined, UserOutlined } from '@ant-design/icons'
 import LikeButton from '@src/Aragorn/Common/LikeButton'
-// import Content from './Content'
 import { useDispatch } from 'react-redux'
-import { CONTENT_SHOW, GET_ARTICLE_DETAILS } from '@src/Store/Actions/Common/instance'
+import { GET_ARTICLE_DETAILS } from '@src/Store/Actions/Article/instance'
 import Styled from 'styled-components'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -40,14 +39,11 @@ const Cardbody = (props) => {
     const [percent, setPercent] = React.useState(0)
     const [show, setShow] = React.useState(false)
     const handleClick = React.useCallback(() => {
-        dispatch({
-            type: CONTENT_SHOW,
-            payload: true
-        })
         setPercent(100);
         setShow(true);
         dispatch({
-            type: GET_ARTICLE_DETAILS
+            type: GET_ARTICLE_DETAILS,
+            payload: 123
         })
     }, [dispatch, setPercent, setShow])
 
@@ -63,10 +59,10 @@ const Cardbody = (props) => {
                     percent={percent}
                     status="active"
                 />
-                <Avatar className={show ? 'animated fadeOut' : ''} style={STYLE.AVATAR} size="large" icon={<UserOutlined />} />
+                <Avatar className={show ? 'animated zoomOut' : ''} style={STYLE.AVATAR} size="large" icon={<UserOutlined />} />
                 <DivDate>
-                    <span className={show ? 'animated fadeOut' : ''}><FieldTimeOutlined />{props.month}</span>
-                    <span className={show ? 'animated fadeOut' : ''}><FieldTimeOutlined />{props.time}</span>
+                    <span className={show ? 'animated fadeOutLeft' : ''}><FieldTimeOutlined />{props.month}</span>
+                    <span className={show ? 'animated fadeOutRight' : ''}><FieldTimeOutlined />{props.time}</span>
                 </DivDate>
             </DivContent>
             <footer style={{ 'display': 'flex', 'justifyContent': 'center' }}>

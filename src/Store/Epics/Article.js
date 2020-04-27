@@ -1,6 +1,7 @@
-import { GET_ARTICLE_DETAILS } from '@src/Store/Actions/Common/instance'
+import { GET_ARTICLE_DETAILS, OPEN_ARTICLE_STUDIO } from '@src/Store/Actions/Article/instance'
 import { combineEpics, ofType } from 'redux-observable'
 import { switchMap } from 'rxjs/operators'
+import { of } from 'rxjs'
 import { Ajax } from '@src/Eden/Utils/request.js'
 
 const getArticleDetailsEpic = action$ =>
@@ -11,8 +12,10 @@ const getArticleDetailsEpic = action$ =>
         })
             |> switchMap(res => {
                 if (res.isSuccess) {
-                    alert(res.payload.msg)
-                    return []
+                    return of({
+                        type: OPEN_ARTICLE_STUDIO,
+                        payload: res.payload
+                    })
                 }
                 return res
             })

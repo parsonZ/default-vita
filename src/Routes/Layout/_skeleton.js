@@ -12,7 +12,7 @@ export default
         ({ match }) => {
             let Wrapper = ({ children }) => <React.Fragment>{children}</React.Fragment>
 
-            if (match.params.firstlevel === 'base') {
+            if (['base', 'full'].includes(match.params.firstlevel)) {
                 Wrapper = Base
             }
             return <Wrapper>
