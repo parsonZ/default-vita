@@ -1,7 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
 import { Card, Skeleton, Avatar, Progress } from 'antd';
-import { FieldTimeOutlined, UserOutlined } from '@ant-design/icons'
+import { FieldTimeOutlined } from '@ant-design/icons'
 import LikeButton from '@src/Aragorn/Common/LikeButton'
 import { useDispatch } from 'react-redux'
 import { GET_ARTICLE_DETAILS } from '@src/Store/Actions/Article/instance'
@@ -28,16 +28,13 @@ const DivDate = Styled.div`
     }
 `;
 
-const STYLE = {
-    AVATAR: {
-        margin: '30px'
-    }
-}
+const ColorList = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae']
 
 const Cardbody = (props) => {
     const dispatch = useDispatch()
     const [percent, setPercent] = React.useState(0)
     const [show, setShow] = React.useState(false)
+    const [color,] = React.useState(ColorList)
     const handleClick = React.useCallback(() => {
         setPercent(100);
         setShow(true);
@@ -59,7 +56,10 @@ const Cardbody = (props) => {
                     percent={percent}
                     status="active"
                 />
-                <Avatar className={show ? 'animated zoomOut' : ''} style={STYLE.AVATAR} size="large" icon={<UserOutlined />} />
+                <Avatar className={show ? 'animated zoomOut' : ''} style={{ margin: '2rem', background: color[Math.ceil(Math.random() * 3)] }} size="large" shape="square">
+                    {props.title.slice(0, 1)}
+                </Avatar>
+
                 <DivDate>
                     <span className={show ? 'animated fadeOutLeft' : ''}><FieldTimeOutlined />{props.month}</span>
                     <span className={show ? 'animated fadeOutRight' : ''}><FieldTimeOutlined />{props.time}</span>

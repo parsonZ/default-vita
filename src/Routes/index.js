@@ -4,7 +4,6 @@ import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux'
 import store from '@src/Store'
 import 'antd/dist/antd.css'
-import '@src/Aragorn/Styles/override.scss'
 import '@src/Aragorn/Styles/transition.scss'
 import '@src/Aragorn/Styles/animate.min.css'
 

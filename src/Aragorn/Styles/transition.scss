@@ -1,13 +1,13 @@
 /* router-transition */
 .router-transition-enter {
-    left: -10px;
+    top: 10px;
     opacity: 0;
     position: relative;
 }
 
 .router-transition-enter.router-transition-enter-active {
     opacity: 1;
-    left: 0;
+    top: 0;
     transition: all 500ms ease-in;
 }
 
@@ -17,7 +17,7 @@
 
 .router-transition-exit.router-transition-exit-active {
     opacity: 0;
-    right: -100%;
+    top: 10px;
     transition: all 300ms ease-in;
 }
 

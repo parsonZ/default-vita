@@ -1,12 +1,10 @@
   body {
     background: #ededed !important;
     color: #fff;
-    padding-left: 240px;
   }
 
   main {
     padding: 10px;
-    background-color: #FFF;
     border-radius: 5px;
   }
 
@@ -77,17 +75,11 @@
   }
 
   @media screen and (max-width: 980px) and (min-width: 768px) {
-    body {
-        padding-left: 90px;
-    }
     .loader {
-        left: calc(50% + 90px / 2 - 32px);
+        left: calc(50% + 60px / 2 - 32px);
     }
   }
   @media screen and (max-width: 768px) {
-    body {
-        padding-left: 0;
-    }
     .loader {
         left: calc(50% + 32px / 2 - 32px);
     }

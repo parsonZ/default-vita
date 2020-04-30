@@ -1,8 +1,3 @@
-# [james-bond](https://en.wikipedia.org/wiki/James_Bond)
-
-新情报平台（2018.02.01 - 至今）
-test
-
 ## 目录结构
 
 * build _(production 版本)_
@@ -84,24 +79,3 @@ emoji | 对应行为
   * Eden/Utils/UrlManager中提供api对host.json进行相应操作
   * 最主要的api是Ajax，他会完成参数验证，请求异常捕捉，登录校验失败捕捉并弹出登录框、cancel其他并发请求、在登录成功后retry所有请求等。
   * 使用Ajax时，需要在它的下游做条件判断，将非请求结果的数据流直接抛出
-
-<!-- ## 快捷键
-  1. 快捷键统一在Nevermore/Common/keymap中配置别名，格式为
-  ```json
-  {
-      namespace: {
-          alias: keycode
-      }
-  }
-  ```
-  2. 须注意，快捷键的生命周期，是`react-keyboardist`所在组件的生命周期决定的
-  3. keycode是KeyboardEvent.code，如KeyK
-  4. 支持组合 -->
-
-## react开发建议
-
-  1. 避免使用字面量作为props，定义一个const来代替
-  1. 依赖状态拼接出来的字面量类型的props，使用reselect或re-reselect做缓存，或者直接使用PureComponent
-  1. reselect/PureComponent带来的性能提升，是reselect/shallowEquals和createElement的博弈，因此，只有在props较少，而DOM较多的情况下，使用PureComponent思想优化才有意义
-  1. 2、3条对于纯DOM组件没有意义
-  1. hotloader与懒加载、传送门都不兼容

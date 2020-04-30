@@ -1,59 +1,127 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { withRouter } from 'react-router-dom'
-import '@src/Aragorn/Common/Menu'
+import '@src/Aragorn/Styles/layout.scss'
+import '@src/Aragorn/Common/Logo'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-
-const STYLE = {
-    WRAP: {
-        padding: '10px',
-        borderRadius: '5px'
-    }
-}
-
-const ref = React.createRef()
 class Layout extends React.Component {
 
-    componentDidMount() {
-        ref.current.shadowRoot.querySelectorAll("nav ul li").forEach(el => {
-            el.addEventListener('click', () => this.handleClick(el))
-        })
+    constructor() {
+        super()
+        this.state = {
+            rightSide: false,
+            leftSide: false,
+            routes: [{
+                'path': 'resume', 'name': '简历 resume'
+            }, {
+                'path': 'article', 'name': '文章 article'
+            }, {
+                'path': 'other', 'name': '其他 other'
+            }, {
+                'path': 'settings', 'name': '设置 settings'
+            }]
+        }
+
+        this.toggleLeft = this.toggleLeft.bind(this)
+        this.toggleRight = this.toggleRight.bind(this)
+        this.toggleClose = this.toggleClose.bind(this)
+        this.handleRoute = this.handleRoute.bind(this)
     }
 
-    handleClick(el) {
-        this.props.history.push(el.getAttribute('data-path'))
+    toggleLeft() {
+        this.setState({ leftSide: !this.state.leftSide })
+    }
+
+    toggleRight() {
+        this.setState({ rightSide: !this.state.rightSide })
+    }
+
+    toggleClose() {
+        this.setState({ rightSide: false, leftSide: false })
+    }
+
+    handleRoute(path) {
+        this.props.history.push(path)
+        this.toggleClose()
     }
 
     render() {
         return (
-            <>
-                <section>
-                    <pz-menu
-                        ref={ref}
-                        routes='[{
-                            "path": "resume", "label": "简历 resume", "icon": "dashboard"
-                        }, {
-                            "path": "article", "label": "文章 article", "icon": "customers"
-                        }, {
-                            "path": "other", "label": "其他 other", "icon": "users"
-                        }, {
-                            "path": "settings", "label": "设置 settings", "icon": "settings"
-                        }]'
-                    >
-                    </pz-menu>
-                </section>
-                <section style={STYLE.WRAP}>
-                    <TransitionGroup>
-                        <CSSTransition
-                            key={this.props.location.pathname}
-                            classNames={this.props.location.pathname === '/base/article' ? '' : 'router-transition'}
-                            timeout={{ enter: 500, exit: this.props.location.pathname === '/base/article' ? 0 : 300 }}
-                        >
-                            <div>{this.props.children}</div>
-                        </CSSTransition>
-                    </TransitionGroup>
-                </section>
-            </>
+            <div className="container">
+                <div className={this.state.leftSide ? 'left-side active' : 'left-side'}>
+                <div className="left-side-button" onClick={this.toggleLeft}>
+                    <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <svg stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                    </svg>
+                </div>
+                <div className="logo">
+                    <pz-logo class="logo-animate"/>
+                    PARSONZ
+                </div>
+                <div className="side-wrapper">
+                    <div className="side-title">MENU</div>
+                    <div className="side-menu">
+                    {
+                        this.state.routes.map((v, i) => {
+                            return (
+                                <span onClick={() => this.handleRoute(v.path)} key={v.path}>
+                                    {i === 0 ? (
+                                        <svg fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+                                            <path d="M9 22V12h6v10"></path>
+                                        </svg>
+                                    ) : null}
+                                    {i === 1 ? (
+                                        <svg stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                        </svg>
+                                    ) : null}
+                                    {i === 2 ? (
+                                         <svg fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                         </svg>
+                                    ) : null}
+                                    {i === 3 ? (
+                                        <svg fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                                        </svg>
+                                    ) : null}
+                                    {v.name}
+                                </span>
+                            )
+                        })
+                    }
+                    </div>
+                </div>
+                </div>
+                <div className="main">
+                    <div className="search-bar">
+                        <input type="text" placeholder="Search" />
+                        <button className="right-side-button" onClick={this.toggleRight}>
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </button>
+                    </div>
+                    <section className="main-container">
+                        <TransitionGroup>
+                            <CSSTransition
+                                key={this.props.location.pathname}
+                                classNames={this.props.location.pathname === '/base/article' ? '' : 'router-transition'}
+                                timeout={{ enter: 500, exit: this.props.location.pathname === '/base/article' ? 0 : 300 }}
+                            >
+                                <div>{this.props.children}</div>
+                            </CSSTransition>
+                        </TransitionGroup>
+                    </section>
+                </div>
+                <div className={this.state.rightSide ? 'right-side active' : 'right-side'}>
+                    nihao
+                </div>
+                <div onClick={this.toggleClose} className={this.state.rightSide || this.state.leftSide ? 'overlay active' : 'overlay'}></div>
+            </div>
         )
     }
 }

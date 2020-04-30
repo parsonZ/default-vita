@@ -27,7 +27,7 @@ span {
     &:hover {
       .circle {
         width: 100%;
-        background: $hoverbackground;
+        background: #1771d6;
         .icon {
           &.arrow {
           background: $white;
@@ -82,7 +82,6 @@ span {
       margin: 0;
       width: 2.5em;
       height: 2.5em;
-      background: $black;
       border-radius: 1.625rem;
       .icon {
         @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
