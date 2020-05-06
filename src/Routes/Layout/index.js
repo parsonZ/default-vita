@@ -96,7 +96,7 @@ class Layout extends React.Component {
                 </div>
                 <div className="logo">
                     <pz-logo class="logo-animate"/>
-                    PARSONZ
+                    <span>PARSONZ</span>
                 </div>
                 <div className="side-wrapper">
                     <div className="side-title">MENU</div>
