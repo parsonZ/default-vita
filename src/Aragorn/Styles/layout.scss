@@ -95,6 +95,8 @@ body {
    }
    .logo-animate {
      opacity: 1;
+     transform: translateX(0);
+     transition: .3s;
    }
    .left-side-button svg:last-child {
     transform: translate(-50%, -50%);
@@ -102,12 +104,18 @@ body {
    }
   }
   &:not(.active) {
-   width: 56px;
+   width: 0;
    overflow: hidden;
+   .left-side-button {
+     position: absolute;
+     z-index: 4;
+     left: 10px;
+   }
    & > *:not(.logo):not(.left-side-button) {
     opacity: 0;
    }
    .logo-animate {
+      transform: translateX(-100px);
       opacity: 0;
     }
    .logo {
@@ -123,6 +131,7 @@ body {
 }
 
 .right-side {
+ color: #fff;
  width: 280px;
  flex-shrink: 0;
  margin-left: auto;
@@ -141,6 +150,7 @@ body {
 
   &.active {
    transform: translatex(0);
+   z-index: 105;
   }
  }
 }
@@ -149,7 +159,6 @@ body {
  flex-grow: 1;
  display: flex;
  flex-direction: column;
- background-color: #181d2f;
 }
 
 .logo {
@@ -211,6 +220,8 @@ body {
  background-color: $bg-color;
  z-index: 3;
  position: relative;
+ display: grid;
+ margin-left: 35px;
  input {
   outline: none;
   height: 100%;
@@ -218,11 +229,11 @@ body {
   display: block;
   background-color: transparent;
   border: none;
-  padding: 0 54px;
+  padding: 0 50px 0 35px;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512'%3e%3cpath d='M508.9 478.7L360 330a201.6 201.6 0 0045.2-127.3C405.3 90.9 314.4 0 202.7 0S0 91 0 202.7s91 202.6 202.7 202.6c48.2 0 92.4-17 127.3-45.2L478.7 509c4.2 4.1 11 4.1 15 0l15.2-15.1c4.1-4.2 4.1-11 0-15zm-306.2-116c-88.3 0-160-71.8-160-160s71.7-160 160-160 160 71.7 160 160-71.8 160-160 160z' data-original='%23000000' class='active-path' data-old_color='%23000000' fill='%235C5D71'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-size: 16px;
-  background-position: 25px 50%;
+  background-position: 10px 50%;
   color: #fff;
   font-family: $body-font;
   font-weight: 600;
@@ -254,7 +265,7 @@ body {
 }
 
 .main-container {
- padding: 15px;
+ padding: 0 15px;
  flex-grow: 1;
  overflow: auto;
  background-color: #24273b;
@@ -357,28 +368,28 @@ body {
  }
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
+@media screen and (min-width: 700px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $bg-color;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: $bg-color;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.11);
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-
 
 $numOfParts: 4;
 $animTime: 1s;
@@ -390,7 +401,7 @@ $letterStagger: 0.1s;
 .slider {
   overflow: hidden;
   position: relative;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 90px);
   color: #fff;
   
   @mixin sliderReady {

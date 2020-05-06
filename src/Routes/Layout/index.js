@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import '@src/Aragorn/Styles/layout.scss'
 import '@src/Aragorn/Common/Logo'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { Button } from 'antd'
+import { PoweroffOutlined } from '@ant-design/icons';
 class Layout extends React.Component {
 
     constructor() {
@@ -19,13 +21,15 @@ class Layout extends React.Component {
                 'path': 'other', 'name': '其他 other'
             }, {
                 'path': 'settings', 'name': '设置 settings'
-            }]
+            }],
+            timer: null
         }
 
         this.toggleLeft = this.toggleLeft.bind(this)
         this.toggleRight = this.toggleRight.bind(this)
         this.toggleClose = this.toggleClose.bind(this)
         this.handleRoute = this.handleRoute.bind(this)
+        this.closeAnimate = this.closeAnimate.bind(this)
     }
 
     toggleLeft() {
@@ -43,6 +47,41 @@ class Layout extends React.Component {
     handleRoute(path) {
         this.props.history.push(path)
         this.toggleClose()
+    }
+
+    closeAnimate() {
+        if (this.state.timer) {
+            clearInterval(this.state.timer)
+            this.setState({ timer: null })
+        } else {
+            this.beginTimer()
+        }
+    }
+
+    beginTimer() {
+        const q = document.querySelector('#q')
+        const s = document.body;
+        const w = (q.width = s.offsetWidth);
+        const h = (q.height = s.offsetHeight);
+        const ctx = q.getContext("2d");
+        const p = Array(Math.floor(w / 10) + 1).fill(0);
+        const random = (items) => items[Math.floor(Math.random() * items.length)];
+        const hex = "0123456789ABCDEF".split("");
+
+        const timer = setInterval(() => {
+            ctx.fillStyle = "rgba(36, 39, 59, .05)";
+            ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = "#0f0";
+            p.forEach((v, i) => {
+                ctx.fillText(random(hex), i * 10, v);
+                p[i] = v >= h || v > 50 + 10000 * Math.random() ? 0 : v + 10;
+            });
+        }, 1000 / 20);
+        this.setState({ timer })
+    }
+
+    componentDidMount() {
+        this.beginTimer()        
     }
 
     render() {
@@ -118,7 +157,13 @@ class Layout extends React.Component {
                     </section>
                 </div>
                 <div className={this.state.rightSide ? 'right-side active' : 'right-side'}>
-                    nihao
+                    <canvas id="q" />
+                    <Button
+                        style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+                        type="primary"
+                        icon={<PoweroffOutlined />}
+                        onClick={this.closeAnimate}
+                    />
                 </div>
                 <div onClick={this.toggleClose} className={this.state.rightSide || this.state.leftSide ? 'overlay active' : 'overlay'}></div>
             </div>
